@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+/*export default function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -21,6 +21,58 @@ function App() {
       </header>
     </div>
   );
+} */
+
+export default function CalcWindow(){
+  
+  return (
+    <React.Fragment>
+      <div className="topbox">
+        <ResultBar result={15}/>
+      </div>
+      <div className="board-row">
+        <SymbolNum snum={"AC"}/>
+        <SymbolNum snum={"+/-"}/>
+        <SymbolNum snum={"%"}/>
+        <SymbolNum snum={"/"}/>
+      </div>
+      <div className="board-row">
+        <SymbolNum snum={"7"}/>
+        <SymbolNum snum={"8 "}/>
+        <SymbolNum snum={"9"}/>
+        <SymbolNum snum={"*"}/>
+      </div>
+      <div className="board-row">
+        <SymbolNum snum={"4"}/>
+        <SymbolNum snum={"5"}/>
+        <SymbolNum snum={"6"}/>
+        <SymbolNum snum={"-"}/>
+      </div>
+      <div className="board-row">
+        <SymbolNum snum={"1"}/>
+        <SymbolNum snum={"2"}/>
+        <SymbolNum snum={"3"}/>
+        <SymbolNum snum={"+"}/>
+      </div>
+      <div className="board-row">
+        <SymbolNum snum={"0"}/>
+        <SymbolNum snum={"0"}/>
+        <SymbolNum snum={"."}/>
+        <SymbolNum snum={"="}/>
+      </div>
+    </React.Fragment>
+  );
 }
 
-export default App;
+const SymbolNum = (props: {snum: string}) => {
+  return (
+    <h1 className='square'>{props.snum}</h1>
+  )
+
+}
+
+const ResultBar = (props: {result: number}) => {
+  return (
+    <h1>{props.result}</h1>
+  );
+}
