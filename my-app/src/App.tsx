@@ -27,6 +27,7 @@ export default function CalcWindow(){
   
   return (
     <React.Fragment>
+      <FlexItem></FlexItem>
       <div className="topbox">
         <ResultBar result={15}/>
       </div>
@@ -67,8 +68,18 @@ export default function CalcWindow(){
 const SymbolNum = (props: {snum: string}) => {
   return (
     <h1 className='square'>{props.snum}</h1>
-  )
+  );
 
+}
+
+const FlexItem = () => {
+  return (
+    <div className="container" id="container">
+      <div>One</div>
+      <div>Item two</div>
+      <div>The item we will refer to as three</div>
+    </div>
+  );
 }
 
 const ResultBar = (props: {result: number}) => {
