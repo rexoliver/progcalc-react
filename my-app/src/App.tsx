@@ -23,15 +23,9 @@ export default function CalcWindow(){
     if (isNaN(num_output)){
       setOutput("0")
     } else {
-      setOutput(num_output);
+      setOutput(num_output.toString());
     }
-    setBuild_equation(output);
-
-    console.log("To string " + num_output.toString());
-    console.log("Output: " + output);
-    console.log("Num_output: " + num_output);
-    console.log("IsNan? " + isNaN(num_output));
-    setOutput("0");
+    setBuild_equation(num_output.toString());
   }
 
   function handleSymbolClick(symbol: string){
