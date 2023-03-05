@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 /*export default function App() {
@@ -28,52 +27,38 @@ export default function CalcWindow(){
   return (
     <React.Fragment>
       <div className='gridcontainer'>
-        <div className="topbox">
-          <ResultBar result={15}/>
-        </div>
-        <div className='numpad'>
-          <div className='row'>
-            <SymbolNum snum={"7"}/>
-            <SymbolNum snum={"8 "}/>
-            <SymbolNum snum={"9"}/>
+        <div className='row'>
+          <div className="topbox">
+            <ResultBar result={15}/>
           </div>
-          <div className='row'>
-            <SymbolNum snum={"4"}/>
-            <SymbolNum snum={"5"}/>
-            <SymbolNum snum={"6"}/>
-          </div>
-          <div className='row'>
-            <SymbolNum snum={"1"}/>
-            <SymbolNum snum={"2"}/>
-            <SymbolNum snum={"3"}/>
-          </div>  
-          <div className='row'>
-            <SymbolNum snum={"0"}/>
-            <SymbolNum snum={"0"}/>
-            <SymbolNum snum={"."}/>
-          </div>
-        </div>
-        
-        <div className="board-row">
+        </div>  
+        <div className="row">
           <SymbolNum snum={"AC"}/>
           <SymbolNum snum={"+/-"}/>
           <SymbolNum snum={"%"}/>
           <SymbolNum snum={"/"}/>
         </div>
-        <div className="board-row">
-          
+        <div className='row'>
+          <SymbolNum snum={"7"}/>
+          <SymbolNum snum={"8"}/>
+          <SymbolNum snum={"9"}/>
           <SymbolNum snum={"*"}/>
         </div>
-        <div className="board-row">
-          
+        <div className='row'>
+          <SymbolNum snum={"4"}/>
+          <SymbolNum snum={"5"}/>
+          <SymbolNum snum={"6"}/>
           <SymbolNum snum={"-"}/>
         </div>
-        <div className="board-row">
-          
+        <div className='row'>
+          <SymbolNum snum={"1"}/>
+          <SymbolNum snum={"2"}/>
+          <SymbolNum snum={"3"}/>
           <SymbolNum snum={"+"}/>
-        </div>
-        <div className="board-row">
-          
+        </div>  
+        <div className='row'>
+          <BigSymbolNum snum={'0'}/>
+          <SymbolNum snum={'.'}/>
           <SymbolNum snum={"="}/>
         </div>
       </div>
@@ -83,33 +68,20 @@ export default function CalcWindow(){
 
 const SymbolNum = (props: {snum: string}) => {
   return (
-    <h1 className='square'>{props.snum}</h1>
+    <button className='square'>{props.snum}</button>
   );
 }
 
+const BigSymbolNum = (props: {snum: string}) => {
+  return (
+    <button className='bigsquare'>{props.snum}</button>
+  );
+}
 
 const ResultBar = (props: {result: number}) => {
   return (
-    <h1>{props.result}</h1>
+    <button className='topbox'>{props.result}</button>
   );
 }
 
-
-const GridItem = () => {
-  return (
-    <div className='gridcontainer' id='gridcontainer'>
-      <div className='box'>Texttime</div>
-    </div>
-  );
-}
-
-const FlexItem = () => {
-  return (
-    <div className="container" id="container">
-      <div className='box'>One</div>
-      <div className='box'>Item two</div>
-      <div className='box'>The item we will refer to as three</div>
-    </div>
-  );
-}
 
