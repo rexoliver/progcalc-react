@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/progcalc-react/static/css/main.0226f470.css",
+    "main.js": "/progcalc-react/static/js/main.285a5215.js",
+    "static/js/787.28cb0dcd.chunk.js": "/progcalc-react/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/progcalc-react/index.html",
+    "main.0226f470.css.map": "/progcalc-react/static/css/main.0226f470.css.map",
+    "main.285a5215.js.map": "/progcalc-react/static/js/main.285a5215.js.map",
+    "787.28cb0dcd.chunk.js.map": "/progcalc-react/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0226f470.css",
+    "static/js/main.285a5215.js"
+  ]
+}
