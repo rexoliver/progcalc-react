@@ -1,87 +1,95 @@
 import React from 'react';
 import './App.css';
-
-/*export default function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-} */
+import {useState} from 'react';
 
 export default function CalcWindow(){
   
+  const [output, setOutput] = useState("0");
+  const [build_equation, setBuild_equation] = useState("0");
+
+  function handleNumClick(num: string){
+    setOutput("0");
+    setBuild_equation(build_equation + num);
+  }
+
+  function handleEqualsClick(){
+    const num_output = eval(build_equation);
+    num_output ? setOutput(num_output.toString()) : setOutput("0");
+    setBuild_equation(num_output);
+    setOutput("0");
+  }
+
+  function handleSymbolClick(symbol: string){
+    setOutput("0");
+    setBuild_equation(build_equation + symbol);
+  }
+
+  function handleClearClick(){
+    setOutput("0");
+    setBuild_equation("0");
+  }
+
   return (
     <React.Fragment>
       <div className='gridcontainer'>
         <div className='row'>
           <div className="topbox">
-            <ResultBar result={15}/>
+            <ResultBar value={build_equation} />
           </div>
         </div>  
         <div className="row">
-          <SymbolNum snum={"AC"}/>
-          <SymbolNum snum={"+/-"}/>
-          <SymbolNum snum={"%"}/>
-          <SymbolNum snum={"/"}/>
+          <SymbolNum value={"AC"} onSymbolNumClick={() => handleClearClick()}/>
+          <SymbolNum value={"+/-"} onSymbolNumClick={() => handleSymbolClick("-")}/>
+          <SymbolNum value={"%"} onSymbolNumClick={() => handleSymbolClick("%")}/>
+          <SymbolNum value={"/"} onSymbolNumClick={() => handleSymbolClick("/")}/>
         </div>
         <div className='row'>
-          <SymbolNum snum={"7"}/>
-          <SymbolNum snum={"8"}/>
-          <SymbolNum snum={"9"}/>
-          <SymbolNum snum={"*"}/>
+          <SymbolNum value={"7"} onSymbolNumClick={() => handleNumClick("7")}/>
+          <SymbolNum value={"8"} onSymbolNumClick={() => handleNumClick("8")}/>
+          <SymbolNum value={"9"} onSymbolNumClick={() => handleNumClick("9")}/>
+          <SymbolNum value={"*"} onSymbolNumClick={() => handleNumClick("*")}/>
         </div>
         <div className='row'>
-          <SymbolNum snum={"4"}/>
-          <SymbolNum snum={"5"}/>
-          <SymbolNum snum={"6"}/>
-          <SymbolNum snum={"-"}/>
+          <SymbolNum value={"4"} onSymbolNumClick={() => handleNumClick("4")}/>
+          <SymbolNum value={"5"} onSymbolNumClick={() => handleNumClick("5")}/>
+          <SymbolNum value={"6"} onSymbolNumClick={() => handleNumClick("6")}/>
+          <SymbolNum value={"-"} onSymbolNumClick={() => handleNumClick("-")}/>
         </div>
         <div className='row'>
-          <SymbolNum snum={"1"}/>
-          <SymbolNum snum={"2"}/>
-          <SymbolNum snum={"3"}/>
-          <SymbolNum snum={"+"}/>
+          <SymbolNum value={"1"} onSymbolNumClick={() => handleNumClick("1")}/>
+          <SymbolNum value={"2"} onSymbolNumClick={() => handleNumClick("2")}/>
+          <SymbolNum value={"3"} onSymbolNumClick={() => handleNumClick("3")}/>
+          <SymbolNum value={"+"} onSymbolNumClick={() => handleNumClick("+")}/>
         </div>  
         <div className='row'>
-          <BigSymbolNum snum={'0'}/>
-          <SymbolNum snum={'.'}/>
-          <SymbolNum snum={"="}/>
+          <BigSymbolNum value={'0'} onBigSymbolNumClick={() => handleNumClick}/>
+          <SymbolNum value={'.'} onSymbolNumClick={() => handleNumClick}/>
+          <SymbolNum value={"="} onSymbolNumClick={() => handleEqualsClick}/>
         </div>
       </div>
     </React.Fragment>
   );
 }
 
-const SymbolNum = (props: {snum: string}) => {
+
+
+const SymbolNum = (props: {value: string, onSymbolNumClick: () => void}) => {
+
   return (
-    <button className='square'>{props.snum}</button>
+    <button className='square' onClick={() => props.onSymbolNumClick}>{props.value}</button>
   );
 }
 
-const BigSymbolNum = (props: {snum: string}) => {
+const BigSymbolNum = (props: {value: string, onBigSymbolNumClick: () => void}) => {
+
   return (
-    <button className='bigsquare'>{props.snum}</button>
+    <button className='bigsquare' onClick={props.onBigSymbolNumClick}>{props.value}</button>
   );
 }
 
-const ResultBar = (props: {result: number}) => {
+const ResultBar = (props: {value: string}) => {
   return (
-    <button className='topbox'>{props.result}</button>
+    <button className='topbox'>{props.value}</button>
   );
 }
-
 
