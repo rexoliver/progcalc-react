@@ -9,13 +9,28 @@ export default function CalcWindow(){
 
   function handleNumClick(num: string){
     setOutput("0");
-    setBuild_equation(build_equation + num);
+    if (build_equation === "0"){
+      setBuild_equation(num);
+    } else {
+      setBuild_equation(build_equation + num);
+    }
+    
+    console.log("clicked " + num)
   }
 
   function handleEqualsClick(){
     const num_output = eval(build_equation);
-    num_output ? setOutput(num_output.toString()) : setOutput("0");
-    setBuild_equation(num_output);
+    if (isNaN(num_output)){
+      setOutput("0")
+    } else {
+      setOutput(num_output);
+    }
+    setBuild_equation(output);
+
+    console.log("To string " + num_output.toString());
+    console.log("Output: " + output);
+    console.log("Num_output: " + num_output);
+    console.log("IsNan? " + isNaN(num_output));
     setOutput("0");
   }
 
@@ -25,7 +40,7 @@ export default function CalcWindow(){
   }
 
   function handleClearClick(){
-    setOutput("0");
+    setOutput("1");
     setBuild_equation("0");
   }
 
@@ -62,9 +77,9 @@ export default function CalcWindow(){
           <SymbolNum value={"+"} onSymbolNumClick={() => handleNumClick("+")}/>
         </div>  
         <div className='row'>
-          <BigSymbolNum value={'0'} onBigSymbolNumClick={() => handleNumClick}/>
-          <SymbolNum value={'.'} onSymbolNumClick={() => handleNumClick}/>
-          <SymbolNum value={"="} onSymbolNumClick={() => handleEqualsClick}/>
+          <BigSymbolNum value={'0'} onBigSymbolNumClick={() => handleNumClick("0")}/>
+          <SymbolNum value={'.'} onSymbolNumClick={() => handleNumClick(".")}/>
+          <SymbolNum value={"="} onSymbolNumClick={() => handleEqualsClick()}/>
         </div>
       </div>
     </React.Fragment>
@@ -76,14 +91,14 @@ export default function CalcWindow(){
 const SymbolNum = (props: {value: string, onSymbolNumClick: () => void}) => {
 
   return (
-    <button className='square' onClick={() => props.onSymbolNumClick}>{props.value}</button>
+    <button className='square' onClick={() => props.onSymbolNumClick()}>{props.value}</button>
   );
 }
 
 const BigSymbolNum = (props: {value: string, onBigSymbolNumClick: () => void}) => {
 
   return (
-    <button className='bigsquare' onClick={props.onBigSymbolNumClick}>{props.value}</button>
+    <button className='bigsquare' onClick={() => props.onBigSymbolNumClick()}>{props.value}</button>
   );
 }
 
